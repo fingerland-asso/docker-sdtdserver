@@ -2,7 +2,11 @@
 CONTAINER=sdtdserver
 VOLUME=/data/dockers/${CONTAINER}
 IMAGE=fingerland/${CONTAINER}
-OPTIONS=-v ${VOLUME}:/server
+PORT=26900
+PORT_QUERY=26901
+PORT_WEBUI=8080
+PORT_TELNET=8081
+OPTIONS=-v ${VOLUME}:/server -p ${PORT}:26900/udp -p 127.0.0.1:${PORT_QUERY}:26901/udp -p 127.0.0.1:${PORT_WEBUI}:8080 -p 127.0.0.1:${PORT_TELNET}:8081
 ################################ computed data #################################
 SERVICE_ENV_FILE=${PWD}/${CONTAINER}.env
 SERVICE_FILE=${PWD}/${CONTAINER}.service
